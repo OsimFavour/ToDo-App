@@ -1,7 +1,7 @@
 import React from 'react'
 import { Row, Col, Form, Button, Modal } from 'react-bootstrap'
 
-const Todo = ({ id, title, description, completeTodo }) => {
+const Todo = ({ id, title, description, completeTodo, deleteTodo }) => {
     return (
         <>
             <Row className='border-bottom pt-3'>
@@ -26,7 +26,7 @@ const Todo = ({ id, title, description, completeTodo }) => {
                     </Form>
 
                     <Form>
-                        <Button variant="danger" className='my-2 btn-block'>
+                        <Button variant="danger" className='my-2 btn-block' onClick={() => deleteTodo(id)}>
                             Delete
                         </Button>
                     </Form>

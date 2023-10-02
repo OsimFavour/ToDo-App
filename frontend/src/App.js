@@ -42,11 +42,21 @@ function App() {
       const todo = todos.filter(todo => todo.id === id)[0]
       console.log(`Todo Check: ${todo}`)
       todo.completed = true
-      await axios.put(`api/v1/todo/${id}/`, todo)
+      await axios.put(`rest_api/v1/todo/${id}/`, todo)
       getTodos()
     }
     catch(err) {
       console.log(err)
+    }
+  }
+
+  const deleteTodo = async id => {
+    try {
+      await axios.delete(`rest_api/v1/todo/${id}`)
+      getTodos()
+    }
+    catch(err) {
+      console.log(`Error Message: ${err}`)
     }
   }
 
@@ -62,7 +72,7 @@ function App() {
               {/* Map functions will loop throught the array itself */}
               {todos.map((todo, index) => (
                 // check if the todo is completed. If it's not, show the <Todo/> element
-                !todo.completed && <Todo key={index} id={todo.id} title={todo.title} description={todo.description} completeTodo={completeTodo}/>
+                !todo.completed && <Todo key={index} id={todo.id} title={todo.title} description={todo.description} completeTodo={completeTodo} deleteTodo={deleteTodo}/>
               ))}
 
             </Card>
